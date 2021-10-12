@@ -51,7 +51,6 @@ class SchedulerConfig:
     SCHEDULER_TABLE = 'apscheduler_jobs'
     DEFAULT_TRIGGER = 'cron'
     CRON_TABLE = 'cron'
-    SCHEMA_TABLE = ".".join([SCHEDULER_SCHEMA, CRON_TABLE])
     THREAD_POOL_NUM = 20
     PROCESS_POOL_NUM = cpu_core_num
     EXECUTORS = {
@@ -64,6 +63,7 @@ class SchedulerConfig:
     }
 
     def __init__(self):
+        self.SCHEMA_TABLE = ".".join([self.SCHEDULER_SCHEMA, self.CRON_TABLE])
         self.JOB_STORES = {
             'default': SQLAlchemyJobStoreWithResult(url=self.DEFAULT_DB_URL,
                                                     tableschema=self.SCHEDULER_SCHEMA,
@@ -115,4 +115,3 @@ class SchedulerUtils:
             else:
                 expression = ''
             return expression
-

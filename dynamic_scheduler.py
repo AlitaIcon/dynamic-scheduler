@@ -12,7 +12,7 @@ from PoolDB.PoolDB import PoolDB
 from apscheduler.events import EVENT_JOB_ADDED, EVENT_JOB_EXECUTED, EVENT_JOB_ERROR
 from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.util import undefined
-from scheduler_utils import SchedulerUtils, SchedulerConfig
+from .scheduler_utils import SchedulerUtils, SchedulerConfig
 
 
 class Listener(SchedulerUtils):
@@ -149,4 +149,3 @@ if __name__ == '__main__':
     s.add_job_with_default(func=task, cron_str='* * */5', id='task')
     s.add_result_listener()
     s.start()
-
